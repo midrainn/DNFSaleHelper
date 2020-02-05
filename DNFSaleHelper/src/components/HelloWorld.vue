@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 style="text-align:center">DNF小账本</h1>
-    <h4>测试版v0.1</h4>
+    <h4>{{version}}</h4>
     <el-container style="border: 1px solid black">
       <el-container>
         <el-main>
@@ -141,6 +141,7 @@ export default {
   },
   data: function() {
     return {
+      version:"测试版v0.1",
       items: [
         {
           name: "星空深渊原石",
@@ -203,11 +204,12 @@ export default {
           let w2 = -10000;
           let e1 = 100000000;
           let e2 = -100000000;
+          result=parseFloat(result);
           return result >= e1 || result <= e2
             ? (result / e1).toFixed(2) + "亿"
             : result >= w1 || result <= w2
             ? (result / w1).toFixed(2) + "万"
-            : result.toFixed(2);
+            : (result).toFixed(2);
         }
         let tmpitem = {};
 
@@ -266,7 +268,7 @@ export default {
     addItem() {
       let isSave = true;
       const that = this;
-      if (isNaN(that.ModifyItem.num) || isNaN(that.ModifyItem.buyprice)) {
+      if (isNaN(that.newItem.num) || isNaN(that.newItem.buyprice)||isNaN(that.newItem.saleprice)) {
         alert("请检查输入");
       }
       that.items.forEach(item => {
@@ -277,11 +279,12 @@ export default {
         }
       });
       if (isSave) {
-        that.items.push(that.newItem);
+        let tmpitem=JSON.parse(JSON.stringify(that.newItem));
+        that.items.push(tmpitem);
         that.SaveData();
         that.Hide("additem");
         this.$message({
-          message: "添加物品" + that.newItem.name + "成功",
+          message: "添加物品" + tmpitem.name + "成功",
           type: "success"
         });
       }
