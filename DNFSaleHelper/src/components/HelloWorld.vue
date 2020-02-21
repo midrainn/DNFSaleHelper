@@ -5,7 +5,7 @@
     <el-container style="border: 1px solid black">
       <el-container>
         <el-main>
-          <el-table :data="ItemsTable" :row-class-name="tableRowClassName">
+          <el-table :data="ItemsTable" height="400" :row-class-name="tableRowClassName">
             <el-table-column prop="name" label="物品名称"></el-table-column>
             <el-table-column prop="num" label="当前库存"></el-table-column>
             <el-table-column prop="rate" label="当前税率"></el-table-column>
