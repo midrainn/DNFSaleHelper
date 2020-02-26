@@ -1,5 +1,4 @@
 # dnfsalehelper
-
 ## Project setup
 ```
 npm install
